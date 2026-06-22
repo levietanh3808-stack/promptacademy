@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { hiringPipeline } from "@/data/business";
 import { adminOpsSnapshot } from "@/data/analytics";
+import { brand } from "@/lib/constants";
 import { FileText, Users, ClipboardCheck, Briefcase, Shield, BarChart3, ArrowRight } from "lucide-react";
 
 const objectives = ["Post short-term tasks", "Build a talent pool", "Run custom assessments", "Hire interns / part-time / full-time"];
@@ -19,7 +20,7 @@ export default function BusinessPage() {
       <PageHero
         eyebrow="For Businesses"
         title="Hire verified AI-ready talent. Post tasks. Test execution. Reduce risk."
-        description="PromptAcademy helps businesses source practical AI execution through real tasks, mentor-reviewed outputs, verified portfolios, and confidence-based hiring."
+        description={`${brand.name} helps businesses source practical AI execution through real tasks, mentor-reviewed outputs, verified portfolios, and confidence-based hiring.`}
       >
         <div className="flex flex-wrap gap-3">
           <Button asChild><Link href="/business/onboarding">Start business onboarding</Link></Button>
@@ -73,7 +74,7 @@ export default function BusinessPage() {
         <SectionHeader title="Better than traditional hiring" />
         <SplitComparison
           left={{ title: "Traditional CV screening", items: ["Self-reported skills", "No execution evidence", "High false-positive rate", "Slow validation cycles"] }}
-          right={{ title: "PromptAcademy proof pipeline", items: ["Verified task history", "Mentor-reviewed outputs", "Trust score + match engine", "Hire with execution confidence"] }}
+          right={{ title: `${brand.name} proof pipeline`, items: ["Verified task history", "Mentor-reviewed outputs", "Trust score + match engine", "Hire with execution confidence"] }}
         />
       </SectionContainer>
 

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowRightLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function FeatureCard({ icon: Icon, title, description, className }: { icon: LucideIcon; title: string; description: string; className?: string }) {
@@ -77,27 +77,90 @@ export function TrustScoreBadge({ score }: { score: number }) {
   );
 }
 
-export function SplitComparison({ left, right, center }: { left: { title: string; items: string[] }; right: { title: string; items: string[] }; center?: string }) {
+function ComparisonCard({
+  title,
+  items,
+  variant,
+}: {
+  title: string;
+  items: string[];
+  variant: "left" | "right";
+}) {
   return (
-    <div className="relative grid gap-8 lg:grid-cols-2">
-      {[left, right].map((side, i) => (
-        <div key={side.title} className={cn("rounded-2xl border p-8", i === 0 ? "border-primary/20 bg-panel" : "border-primary-deep/15 bg-white")}>
-          <h3 className="text-xl font-bold text-foreground">{side.title}</h3>
-          <ul className="mt-4 space-y-3">
-            {side.items.map((item) => (
-              <li key={item} className="flex gap-2 text-sm text-muted">
-                <span className={cn("mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full", i === 0 ? "bg-primary" : "bg-primary-deep")} />
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
-      {center && (
-        <div className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 rounded-full border border-primary/30 bg-white px-6 py-3 text-sm font-semibold text-primary shadow-lg lg:block">
-          {center}
-        </div>
+    <div
+      className={cn(
+        "flex h-full flex-col rounded-2xl border p-6 sm:p-8",
+        variant === "left"
+          ? "border-primary/25 bg-gradient-to-br from-panel to-white"
+          : "border-primary-deep/20 bg-white"
       )}
+    >
+      <div className="mb-4 flex items-center gap-3">
+        <span
+          className={cn(
+            "flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-xs font-bold uppercase",
+            variant === "left" ? "bg-primary/15 text-primary" : "bg-primary-deep/10 text-primary-deep"
+          )}
+        >
+          {variant === "left" ? "Supply" : "Demand"}
+        </span>
+        <h3 className="text-lg font-bold leading-snug text-foreground sm:text-xl">{title}</h3>
+      </div>
+      <ul className="space-y-3">
+        {items.map((item) => (
+          <li key={item} className="flex gap-3 text-sm leading-relaxed text-muted">
+            <span
+              className={cn(
+                "mt-2 h-1.5 w-1.5 shrink-0 rounded-full",
+                variant === "left" ? "bg-primary" : "bg-primary-deep"
+              )}
+            />
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export function SplitComparison({
+  left,
+  right,
+  center,
+}: {
+  left: { title: string; items: string[] };
+  right: { title: string; items: string[] };
+  center?: string;
+}) {
+  const connector = center ? (
+    <div className="flex items-center justify-center py-2 lg:px-2 lg:py-0">
+      <div className="flex w-full max-w-md flex-row items-center gap-3 rounded-2xl border border-primary/20 bg-white px-5 py-4 shadow-sm lg:max-w-[12rem] lg:flex-col lg:px-4 lg:py-6 lg:text-center">
+        <span className="hidden h-px flex-1 bg-gradient-to-r from-transparent via-primary/30 to-primary/50 lg:block lg:h-8 lg:w-px lg:flex-none lg:bg-gradient-to-b" />
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+          <ArrowRightLeft className="h-4 w-4" />
+        </div>
+        <p className="text-sm font-semibold leading-snug text-primary">{center}</p>
+        <span className="hidden h-px flex-1 bg-gradient-to-l from-transparent via-primary/30 to-primary/50 lg:block lg:h-8 lg:w-px lg:flex-none lg:bg-gradient-to-b" />
+      </div>
+    </div>
+  ) : null;
+
+  if (!center) {
+    return (
+      <div className="grid gap-6 lg:grid-cols-2 lg:gap-8">
+        <ComparisonCard title={left.title} items={left.items} variant="left" />
+        <ComparisonCard title={right.title} items={right.items} variant="right" />
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex flex-col gap-6">
+      <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] lg:items-stretch lg:gap-5">
+        <ComparisonCard title={left.title} items={left.items} variant="left" />
+        {connector}
+        <ComparisonCard title={right.title} items={right.items} variant="right" />
+      </div>
     </div>
   );
 }

@@ -9,7 +9,7 @@ import { StatCard, RoleCard, SplitComparison } from "@/components/shared/cards";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { whyNowStats, journeyStats } from "@/data/analytics";
-import { brandMessages } from "@/lib/constants";
+import { brandMessages, brand } from "@/lib/constants";
 import { useState } from "react";
 
 const trustSignals = ["Domain-Specific AI Toolkits", "Real SME Projects", "Verified Portfolios", "Recruiter-Ready Talent"];
@@ -34,8 +34,8 @@ export function HomePage() {
 
   return (
     <>
-      {/* FULLSCREEN HERO */}
-      <section className="relative flex min-h-screen flex-col">
+      {/* FULLSCREEN HERO — navbar sits above as solid white bar */}
+      <section className="relative flex min-h-[calc(100vh-4rem)] flex-col">
         <AnimatedBackground variant="hero" />
         <div className="relative z-10 flex flex-1 flex-col">
           <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-4 py-20 sm:px-6 lg:px-8">
@@ -46,7 +46,7 @@ export function HomePage() {
                   From AI Anxiety to Verified Employability
                 </h1>
                 <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/85">
-                  PromptAcademy is a vertical AI academy and employability ecosystem where learners gain domain-specific AI skills, apply them to real business work, build verified proof-of-work, and get hired through measurable execution.
+                  Skill Launch is a vertical AI academy and employability ecosystem where learners gain domain-specific AI skills, apply them to real business work, build verified proof-of-work, and get hired through measurable execution.
                 </p>
                 <p className="mt-4 text-sm font-medium text-sky-soft">{brandMessages.ecosystem}</p>
                 <div className="mt-8 flex flex-wrap gap-3">
@@ -68,7 +68,7 @@ export function HomePage() {
               </motion.div>
 
               <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, delay: 0.15 }}>
-                <DashboardFrame title="PromptAcademy — Closed-Loop Pipeline">
+                <DashboardFrame title={`${brand.name} — Closed-Loop Pipeline`}>
                   <div className="space-y-3">
                     {workflowSteps.map((item, i) => (
                       <div key={item.num} className="flex items-center gap-4 rounded-xl border border-border bg-panel p-4 transition-colors hover:border-primary/30">
@@ -113,7 +113,7 @@ export function HomePage() {
         <SplitComparison
           left={{ title: "Supply-side crisis", items: ["Gen Z anxiety about AI displacement", "Generic AI learning without practical evidence", "Certificates without proof-of-work", "No employability bridge to hiring"] }}
           right={{ title: "Demand-side bottleneck", items: ["SMEs need affordable AI execution", "Recruiters need proof, not claims", "CVs fail to validate real skills", "Companies want ready-to-contribute talent"] }}
-          center="PromptAcademy closes this gap"
+          center={`${brand.name} closes this gap`}
         />
       </SectionContainer>
 
@@ -154,7 +154,7 @@ export function HomePage() {
         <div className="overflow-hidden rounded-2xl border border-border bg-white">
           <div className="grid grid-cols-2 border-b border-border bg-panel text-sm font-semibold">
             <div className="p-4 text-muted">Generic AI courses</div>
-            <div className="border-l border-border p-4 text-primary">PromptAcademy</div>
+            <div className="border-l border-border p-4 text-primary">{brand.name}</div>
           </div>
           {comparisonRows.map((row) => (
             <div key={row.generic} className="grid grid-cols-2 border-b border-border last:border-0 text-sm">
