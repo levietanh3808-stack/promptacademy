@@ -34,20 +34,20 @@ Project đã cấu hình **static export** + **GitHub Actions** tự deploy khi 
 ### Bước 1 — Tạo repository trên GitHub
 
 1. Vào [github.com/new](https://github.com/new)
-2. Tên repo (ví dụ): `promptacademy`
+2. Tên repo: **`promptacademy`**
 3. Chọn **Public**
 4. **Không** tick "Add README" (repo trống)
 5. Create repository
 
 ### Bước 2 — Push code lên GitHub
 
-Trong terminal, chạy (thay `USERNAME` và `promptacademy` nếu khác):
+Trong terminal, chạy (thay `USERNAME` nếu khác):
 
 ```bash
 cd "/Users/leevietanh/AS/ghbc/web mới/promptacademy"
 
 git add .
-git commit -m "PromptAcademy: full platform + GitHub Pages deploy"
+git commit -m "PromptAcademy: deploy to GitHub Pages"
 
 git remote add origin https://github.com/USERNAME/promptacademy.git
 git branch -M main
