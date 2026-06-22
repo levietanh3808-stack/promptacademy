@@ -5,15 +5,12 @@ import { cn } from "@/lib/utils";
 
 const easeOutExpo = [0.22, 1, 0.36, 1] as const;
 
-/** Fixed viewport bg: deep blue at top → white on scroll, with load reveal */
+/** Fixed viewport bg: deep blue at top → white on scroll, motion always running */
 export function ScrollMorphBackground() {
   const { scrollY } = useScroll();
 
   const heroOpacity = useTransform(scrollY, [0, 320, 640], [1, 0.45, 0]);
-  const lightOpacity = useTransform(scrollY, [0, 180, 520], [0, 0.55, 1]);
-
   const heroSpring = useSpring(heroOpacity, { stiffness: 70, damping: 28, mass: 0.8 });
-  const lightSpring = useSpring(lightOpacity, { stiffness: 70, damping: 28, mass: 0.8 });
 
   return (
     <div aria-hidden className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
@@ -30,19 +27,25 @@ export function ScrollMorphBackground() {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.6, ease: easeOutExpo, delay: 0.15 }}
       >
+        {/* Always-on light motion — visible across entire scroll, especially white sections */}
+        <div className="absolute inset-0">
+          <div className="mesh-light-flow absolute inset-0" />
+          <div className="mesh-orb mesh-orb-light-1" />
+          <div className="mesh-orb mesh-orb-light-2" />
+          <div className="mesh-orb mesh-orb-light-3" />
+          <div className="mesh-orb mesh-orb-light-4" />
+          <div className="mesh-wave mesh-wave-1" />
+          <div className="mesh-wave mesh-wave-2" />
+          <div className="mesh-shimmer mesh-shimmer-light" />
+        </div>
+
+        {/* Hero dark overlay — fades on scroll to reveal flowing white base */}
         <motion.div style={{ opacity: heroSpring }} className="absolute inset-0">
           <div className="mesh-hero-base absolute inset-0" />
           <div className="mesh-orb mesh-orb-hero-1" />
           <div className="mesh-orb mesh-orb-hero-2" />
           <div className="mesh-orb mesh-orb-hero-3" />
           <div className="mesh-shimmer mesh-shimmer-hero" />
-        </motion.div>
-
-        <motion.div style={{ opacity: lightSpring }} className="absolute inset-0">
-          <div className="mesh-light-base absolute inset-0" />
-          <div className="mesh-orb mesh-orb-light-1" />
-          <div className="mesh-orb mesh-orb-light-2" />
-          <div className="mesh-shimmer mesh-shimmer-light" />
         </motion.div>
       </motion.div>
     </div>
@@ -55,20 +58,27 @@ export function FlowingPageBackground({ className }: { className?: string }) {
 }
 
 export function AnimatedBackground({ variant = "light" }: { variant?: "hero" | "light" }) {
+  if (variant === "hero") {
+    return (
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="mesh-hero-base absolute inset-0" />
+        <div className="mesh-orb mesh-orb-hero-2 opacity-80" />
+        <div className="mesh-orb mesh-orb-hero-3 opacity-60" />
+        <div className="mesh-shimmer mesh-shimmer-hero" />
+      </div>
+    );
+  }
+
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
-      <div className={variant === "hero" ? "mesh-hero-base absolute inset-0" : "mesh-light-base absolute inset-0"} />
-      {variant === "hero" ? (
-        <>
-          <div className="mesh-orb mesh-orb-hero-2 opacity-80" />
-          <div className="mesh-orb mesh-orb-hero-3 opacity-60" />
-        </>
-      ) : (
-        <>
-          <div className="mesh-orb mesh-orb-light-1 opacity-70" />
-          <div className="mesh-orb mesh-orb-light-2 opacity-50" />
-        </>
-      )}
+      <div className="mesh-light-flow absolute inset-0" />
+      <div className="mesh-orb mesh-orb-light-1" />
+      <div className="mesh-orb mesh-orb-light-2" />
+      <div className="mesh-orb mesh-orb-light-3" />
+      <div className="mesh-orb mesh-orb-light-4" />
+      <div className="mesh-wave mesh-wave-1" />
+      <div className="mesh-wave mesh-wave-2" />
+      <div className="mesh-shimmer mesh-shimmer-light" />
     </div>
   );
 }

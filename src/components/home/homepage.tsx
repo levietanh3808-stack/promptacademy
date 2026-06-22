@@ -46,8 +46,6 @@ export function HomePage() {
       <div className="relative">
         {/* HERO */}
         <section className="relative flex min-h-[calc(100vh-4rem)] flex-col">
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-[#fafbff]/80" />
-
           <div className="relative z-10 flex flex-1 flex-col">
             <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-4 py-20 sm:px-6 lg:px-8">
               <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
