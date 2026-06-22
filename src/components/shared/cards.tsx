@@ -18,7 +18,7 @@ export function FeatureCard({ icon: Icon, title, description, className }: { ico
 
 export function StatCard({ label, value, note }: { label: string; value: string; note?: string }) {
   return (
-    <div className="rounded-2xl border border-border bg-white p-6 shadow-sm">
+    <div className="rounded-2xl border border-white/50 bg-white/85 p-6 shadow-sm backdrop-blur-sm">
       <p className="text-3xl font-bold text-gradient">{value}</p>
       <p className="mt-2 text-sm font-semibold text-foreground">{label}</p>
       {note && <p className="mt-1 text-xs text-muted">{note}</p>}
@@ -40,7 +40,7 @@ export function RoleCard({
   variant?: "learner" | "business";
 }) {
   return (
-    <div className={cn("flex flex-col rounded-3xl border p-8 transition-all hover:shadow-xl", variant === "learner" ? "border-primary/20 bg-gradient-to-br from-panel to-white hover:border-primary/40" : "border-primary-deep/20 bg-gradient-to-br from-sky/30 to-white hover:border-primary-deep/40")}>
+    <div className={cn("flex flex-col rounded-3xl border p-8 backdrop-blur-sm transition-all hover:shadow-xl", variant === "learner" ? "border-primary/20 bg-white/85 hover:border-primary/40" : "border-primary-deep/20 bg-white/85 hover:border-primary-deep/40")}>
       <h3 className="text-2xl font-bold text-foreground">{title}</h3>
       <ul className="mt-6 flex-1 space-y-3">
         {items.map((item) => (
@@ -91,8 +91,8 @@ function ComparisonCard({
       className={cn(
         "flex h-full flex-col rounded-2xl border p-6 sm:p-8",
         variant === "left"
-          ? "border-primary/25 bg-gradient-to-br from-panel to-white"
-          : "border-primary-deep/20 bg-white"
+          ? "border-primary/25 bg-white/85 backdrop-blur-sm"
+          : "border-primary-deep/20 bg-white/85 backdrop-blur-sm"
       )}
     >
       <div className="mb-4 flex items-center gap-3">
@@ -134,7 +134,7 @@ export function SplitComparison({
 }) {
   const connector = center ? (
     <div className="flex items-center justify-center py-2 lg:px-2 lg:py-0">
-      <div className="flex w-full max-w-md flex-row items-center gap-3 rounded-2xl border border-primary/20 bg-white px-5 py-4 shadow-sm lg:max-w-[12rem] lg:flex-col lg:px-4 lg:py-6 lg:text-center">
+      <div className="flex w-full max-w-md flex-row items-center gap-3 rounded-2xl border border-primary/20 bg-white/85 px-5 py-4 shadow-sm backdrop-blur-sm lg:max-w-[12rem] lg:flex-col lg:px-4 lg:py-6 lg:text-center">
         <span className="hidden h-px flex-1 bg-gradient-to-r from-transparent via-primary/30 to-primary/50 lg:block lg:h-8 lg:w-px lg:flex-none lg:bg-gradient-to-b" />
         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
           <ArrowRightLeft className="h-4 w-4" />

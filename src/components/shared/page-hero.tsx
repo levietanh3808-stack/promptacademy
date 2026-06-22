@@ -16,7 +16,7 @@ export function PageHero({
   compact?: boolean;
 }) {
   return (
-    <section className={cn("relative overflow-hidden border-b border-border", compact ? "py-16" : "py-24")}>
+    <section className={cn("relative overflow-hidden", compact ? "py-16" : "py-24")}>
       <AnimatedBackground variant="light" />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {eyebrow && <Badge className="mb-4">{eyebrow}</Badge>}

@@ -41,16 +41,15 @@ html {
 }
 
 body {
-  background: var(--background);
+  background: #f8fbff;
   color: var(--foreground);
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Solid surfaces only — avoid blur that makes nav text look muddy */
 .nav-solid {
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.92);
   border-bottom: 1px solid var(--border);
 }
 
@@ -67,43 +66,141 @@ body {
 }
 
 .glass-light {
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.88);
   border: 1px solid var(--border);
 }
 
+.glass-card {
+  background: rgba(255, 255, 255, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(8px);
+}
+
 .glow-blue {
-  box-shadow: 0 8px 40px rgba(30, 111, 255, 0.12);
+  box-shadow: 0 8px 40px rgba(30, 111, 255, 0.1);
 }
 
-@keyframes gradient-shift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+/* ── Flowing page background (no grid) ── */
+
+@keyframes aurora-flow {
+  0%, 100% {
+    background-position: 0% 0%;
+  }
+  33% {
+    background-position: 50% 20%;
+  }
+  66% {
+    background-position: 100% 40%;
+  }
 }
 
-@keyframes grid-drift {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(48px); }
+@keyframes orb-drift-1 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(40px, -30px) scale(1.08);
+  }
 }
 
-@keyframes float-light {
-  0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.4; }
-  50% { transform: translate(20px, -30px) scale(1.05); opacity: 0.6; }
+@keyframes orb-drift-2 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-35px, 25px) scale(1.05);
+  }
 }
 
-.animated-gradient-bg {
-  background: linear-gradient(135deg, #030b1f 0%, #0e3a8a 35%, #1e6fff 70%, #4da3ff 100%);
-  background-size: 200% 200%;
-  animation: gradient-shift 12s ease infinite;
+@keyframes orb-drift-3 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translate(25px, 40px) scale(1.1);
+    opacity: 0.5;
+  }
 }
 
-.animated-grid {
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
-  background-size: 48px 48px;
-  animation: grid-drift 20s linear infinite;
+@keyframes orb-drift-4 {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-20px, -40px) scale(1.06);
+  }
 }
 
-.light-section-bg {
-  background: linear-gradient(180deg, #ffffff 0%, #f6faff 50%, #ffffff 100%);
+.page-flow-gradient {
+  background: linear-gradient(
+    165deg,
+    #030b1f 0%,
+    #0a2d6e 12%,
+    #1e6fff 28%,
+    #4da3ff 42%,
+    #a8d2ff 58%,
+    #d9ecff 72%,
+    #eaf4ff 86%,
+    #f6faff 94%,
+    #ffffff 100%
+  );
+  background-size: 400% 400%;
+  animation: aurora-flow 28s ease-in-out infinite;
+}
+
+.page-flow-gradient-soft {
+  background: linear-gradient(
+    165deg,
+    #eaf4ff 0%,
+    #d9ecff 25%,
+    #f6faff 50%,
+    #ffffff 75%,
+    #eaf4ff 100%
+  );
+  background-size: 300% 300%;
+  animation: aurora-flow 32s ease-in-out infinite;
+}
+
+.page-flow-orb {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(80px);
+  will-change: transform;
+}
+
+.page-flow-orb-1 {
+  width: 420px;
+  height: 420px;
+  left: -8%;
+  top: 5%;
+  background: rgba(30, 111, 255, 0.35);
+  animation: orb-drift-1 18s ease-in-out infinite;
+}
+
+.page-flow-orb-2 {
+  width: 360px;
+  height: 360px;
+  right: -5%;
+  top: 25%;
+  background: rgba(77, 163, 255, 0.28);
+  animation: orb-drift-2 22s ease-in-out infinite;
+}
+
+.page-flow-orb-3 {
+  width: 480px;
+  height: 480px;
+  left: 30%;
+  top: 45%;
+  background: rgba(168, 210, 255, 0.4);
+  animation: orb-drift-3 26s ease-in-out infinite;
+}
+
+.page-flow-orb-4 {
+  width: 320px;
+  height: 320px;
+  right: 15%;
+  bottom: 5%;
+  background: rgba(217, 236, 255, 0.55);
+  animation: orb-drift-4 20s ease-in-out infinite;
 }

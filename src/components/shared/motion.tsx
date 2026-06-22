@@ -3,40 +3,26 @@
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-export function AnimatedBackground({ variant = "hero" }: { variant?: "hero" | "light" }) {
-  if (variant === "light") {
-    return (
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-panel via-background to-panel opacity-80" />
-        <motion.div
-          className="absolute -right-20 top-20 h-96 w-96 rounded-full bg-sky/60 blur-[100px]"
-          animate={{ x: [0, 30, 0], y: [0, -20, 0] }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <motion.div
-          className="absolute -left-20 bottom-20 h-80 w-80 rounded-full bg-primary-light/20 blur-[90px]"
-          animate={{ x: [0, -25, 0], y: [0, 15, 0] }}
-          transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-        />
-        <div className="absolute inset-0 opacity-[0.03] animated-grid" style={{ animation: "none", backgroundImage: "linear-gradient(rgba(30,111,255,0.15) 1px, transparent 1px), linear-gradient(90deg, rgba(30,111,255,0.15) 1px, transparent 1px)", backgroundSize: "40px 40px" }} />
-      </div>
-    );
-  }
+/** Full-page flowing gradient — no grid. Spans entire scroll height of parent. */
+export function FlowingPageBackground({ className }: { className?: string }) {
+  return (
+    <div aria-hidden className={cn("pointer-events-none absolute inset-0 -z-10 overflow-hidden", className)}>
+      <div className="page-flow-gradient absolute inset-0" />
+      <div className="page-flow-orb page-flow-orb-1" />
+      <div className="page-flow-orb page-flow-orb-2" />
+      <div className="page-flow-orb page-flow-orb-3" />
+      <div className="page-flow-orb page-flow-orb-4" />
+    </div>
+  );
+}
 
+/** Compact flowing layer for inner page heroes — no grid squares */
+export function AnimatedBackground({ variant = "light" }: { variant?: "hero" | "light" }) {
   return (
     <div className="pointer-events-none absolute inset-0 overflow-hidden">
-      <div className="absolute inset-0 animated-gradient-bg" />
-      <div className="absolute inset-0 animated-grid opacity-40" />
-      <motion.div
-        className="absolute left-1/4 top-1/3 h-64 w-64 rounded-full bg-white/10 blur-[80px]"
-        animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
-        transition={{ duration: 8, repeat: Infinity }}
-      />
-      <motion.div
-        className="absolute right-1/4 bottom-1/4 h-48 w-48 rounded-full bg-sky-soft/30 blur-[60px]"
-        animate={{ x: [0, 40, 0], y: [0, -30, 0] }}
-        transition={{ duration: 10, repeat: Infinity }}
-      />
+      <div className={variant === "hero" ? "page-flow-gradient absolute inset-0" : "page-flow-gradient-soft absolute inset-0"} />
+      <div className="page-flow-orb page-flow-orb-2 opacity-70" />
+      <div className="page-flow-orb page-flow-orb-3 opacity-60" />
     </div>
   );
 }
@@ -73,8 +59,8 @@ export function DashboardFrame({
   className?: string;
 }) {
   return (
-    <div className={cn("overflow-hidden rounded-2xl border border-border bg-white shadow-xl glow-blue", className)}>
-      <div className="flex items-center gap-2 border-b border-border bg-panel px-4 py-3">
+    <div className={cn("overflow-hidden rounded-2xl border border-white/40 bg-white/95 shadow-xl glow-blue backdrop-blur-sm", className)}>
+      <div className="flex items-center gap-2 border-b border-border/60 bg-white/90 px-4 py-3">
         <span className="h-2.5 w-2.5 rounded-full bg-red-400" />
         <span className="h-2.5 w-2.5 rounded-full bg-amber-400" />
         <span className="h-2.5 w-2.5 rounded-full bg-emerald-400" />
@@ -91,7 +77,7 @@ export function CountUpStat({ value, label, note }: { value: string; label: stri
       initial={{ opacity: 0, scale: 0.95 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
-      className="rounded-2xl border border-border bg-white p-6 shadow-sm"
+      className="rounded-2xl border border-white/50 bg-white/80 p-6 shadow-sm backdrop-blur-sm"
     >
       <p className="text-3xl font-bold text-gradient">{value}</p>
       <p className="mt-2 text-sm font-semibold text-foreground">{label}</p>

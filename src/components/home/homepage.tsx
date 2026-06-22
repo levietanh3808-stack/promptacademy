@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight, BookOpen, Briefcase, Shield, Users, CheckCircle2 } from "lucide-react";
-import { AnimatedBackground, FadeIn, DashboardFrame } from "@/components/shared/motion";
+import { FlowingPageBackground, FadeIn, DashboardFrame } from "@/components/shared/motion";
 import { SectionContainer, SectionHeader } from "@/components/shared/section-container";
 import { StatCard, RoleCard, SplitComparison } from "@/components/shared/cards";
 import { Button } from "@/components/ui/button";
@@ -33,19 +33,20 @@ export function HomePage() {
   const step = workflowSteps[activeStep];
 
   return (
-    <>
-      {/* FULLSCREEN HERO — navbar sits above as solid white bar */}
+    <div className="relative isolate">
+      <FlowingPageBackground />
+
+      {/* HERO */}
       <section className="relative flex min-h-[calc(100vh-4rem)] flex-col">
-        <AnimatedBackground variant="hero" />
         <div className="relative z-10 flex flex-1 flex-col">
           <div className="mx-auto flex w-full max-w-7xl flex-1 flex-col justify-center px-4 py-20 sm:px-6 lg:px-8">
             <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
               <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-                <Badge className="mb-6 border-white/20 bg-white/10 text-white">Vertical AI Academy + Employability Ecosystem</Badge>
-                <h1 className="text-4xl font-bold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-6xl">
+                <Badge className="mb-6 border-white/25 bg-white/15 text-white backdrop-blur-sm">Vertical AI Academy + Employability Ecosystem</Badge>
+                <h1 className="text-4xl font-bold leading-[1.08] tracking-tight text-white drop-shadow-sm sm:text-5xl lg:text-6xl">
                   From AI Anxiety to Verified Employability
                 </h1>
-                <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/85">
+                <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/90">
                   PromptAcademy is a vertical AI academy and employability ecosystem where learners gain domain-specific AI skills, apply them to real business work, build verified proof-of-work, and get hired through measurable execution.
                 </p>
                 <p className="mt-4 text-sm font-medium text-sky-soft">{brandMessages.ecosystem}</p>
@@ -62,7 +63,7 @@ export function HomePage() {
                 </div>
                 <div className="mt-10 flex flex-wrap gap-2">
                   {trustSignals.map((s) => (
-                    <span key={s} className="rounded-full border border-white/15 bg-white/10 px-3 py-1 text-xs text-white/80">{s}</span>
+                    <span key={s} className="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs text-white/85 backdrop-blur-sm">{s}</span>
                   ))}
                 </div>
               </motion.div>
@@ -70,8 +71,8 @@ export function HomePage() {
               <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, delay: 0.15 }}>
                 <DashboardFrame title="PromptAcademy — Closed-Loop Pipeline">
                   <div className="space-y-3">
-                    {workflowSteps.map((item, i) => (
-                      <div key={item.num} className="flex items-center gap-4 rounded-xl border border-border bg-panel p-4 transition-colors hover:border-primary/30">
+                    {workflowSteps.map((item) => (
+                      <div key={item.num} className="flex items-center gap-4 rounded-xl border border-border/50 bg-white/70 p-4 backdrop-blur-sm transition-colors hover:border-primary/30">
                         <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
                           <item.icon className="h-5 w-5" />
                         </div>
@@ -80,7 +81,6 @@ export function HomePage() {
                           <p className="font-semibold text-foreground">{item.subtitle}</p>
                         </div>
                         <CheckCircle2 className="h-5 w-5 text-success" />
-                        {i < 3 && <div className="absolute hidden" />}
                       </div>
                     ))}
                     <div className="rounded-xl border border-primary/20 bg-primary/5 p-3 text-center text-sm font-semibold text-primary">
@@ -94,8 +94,8 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* WHY NOW */}
-      <SectionContainer className="light-section-bg">
+      {/* WHY NOW — transparent, same flowing bg */}
+      <SectionContainer>
         <SectionHeader eyebrow="Why Now" title="The challenge is verified execution" description="AI is transforming work. Businesses need execution-ready talent now. Generic education pathways are failing. The future of hiring is proof-of-work." />
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {whyNowStats.map((s, i) => (
@@ -118,12 +118,21 @@ export function HomePage() {
       </SectionContainer>
 
       {/* HOW IT WORKS */}
-      <SectionContainer id="how-it-works" className="border-y border-border bg-panel">
+      <SectionContainer id="how-it-works">
         <SectionHeader eyebrow="How the Ecosystem Works" title={brandMessages.onePipeline} description="From learning to income to employability — LEARN → EARN → BUILD PROOF → GET HIRED" />
         <div className="grid gap-8 lg:grid-cols-12">
           <div className="space-y-2 lg:col-span-5">
             {workflowSteps.map((s, i) => (
-              <button key={s.num} type="button" onClick={() => setActiveStep(i)} className={`flex w-full items-start gap-4 rounded-xl border p-4 text-left transition-all ${activeStep === i ? "border-primary/40 bg-white shadow-md glow-blue" : "border-border bg-white/60 hover:bg-white"}`}>
+              <button
+                key={s.num}
+                type="button"
+                onClick={() => setActiveStep(i)}
+                className={`flex w-full items-start gap-4 rounded-xl border p-4 text-left transition-all backdrop-blur-sm ${
+                  activeStep === i
+                    ? "border-primary/40 bg-white/90 shadow-md glow-blue"
+                    : "border-white/50 bg-white/60 hover:bg-white/80"
+                }`}
+              >
                 <span className="text-xs font-bold text-muted">{s.num}</span>
                 <div>
                   <p className="font-bold text-foreground">{s.title}</p>
@@ -133,7 +142,12 @@ export function HomePage() {
             ))}
           </div>
           <div className="lg:col-span-7">
-            <motion.div key={step.num} initial={{ opacity: 0, x: 12 }} animate={{ opacity: 1, x: 0 }} className="rounded-2xl border border-border bg-white p-8 shadow-sm">
+            <motion.div
+              key={step.num}
+              initial={{ opacity: 0, x: 12 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="rounded-2xl border border-white/50 bg-white/85 p-8 shadow-sm backdrop-blur-sm"
+            >
               <step.icon className="mb-4 h-8 w-8 text-primary" />
               <h3 className="text-2xl font-bold text-foreground">{step.subtitle}</h3>
               <p className="mt-3 leading-relaxed text-muted">{step.desc}</p>
@@ -151,15 +165,15 @@ export function HomePage() {
       {/* COMPARISON */}
       <SectionContainer>
         <SectionHeader title="Why generic EdTech fails" description={brandMessages.ecosystem} />
-        <div className="overflow-hidden rounded-2xl border border-border bg-white">
-          <div className="grid grid-cols-2 border-b border-border bg-panel text-sm font-semibold">
+        <div className="overflow-hidden rounded-2xl border border-white/50 bg-white/85 shadow-sm backdrop-blur-sm">
+          <div className="grid grid-cols-2 border-b border-border/60 bg-white/70 text-sm font-semibold">
             <div className="p-4 text-muted">Generic AI courses</div>
-            <div className="border-l border-border p-4 text-primary">PromptAcademy</div>
+            <div className="border-l border-border/60 p-4 text-primary">PromptAcademy</div>
           </div>
           {comparisonRows.map((row) => (
-            <div key={row.generic} className="grid grid-cols-2 border-b border-border last:border-0 text-sm">
+            <div key={row.generic} className="grid grid-cols-2 border-b border-border/60 last:border-0 text-sm">
               <div className="p-4 text-muted">{row.generic}</div>
-              <div className="flex items-center gap-2 border-l border-border p-4 text-foreground">
+              <div className="flex items-center gap-2 border-l border-border/60 p-4 text-foreground">
                 <CheckCircle2 className="h-4 w-4 shrink-0 text-success" />{row.pa}
               </div>
             </div>
@@ -168,13 +182,13 @@ export function HomePage() {
       </SectionContainer>
 
       {/* CHOOSE YOUR PATH */}
-      <SectionContainer className="bg-gradient-to-b from-panel to-white">
+      <SectionContainer>
         <SectionHeader title="Choose your path" description="Every journey starts with a role. The platform adapts to learner or business needs." />
         <div className="grid gap-8 md:grid-cols-2">
           <RoleCard title="I'm a Learner" items={["Learn AI by profession", "Build a verified portfolio", "Earn through real tasks", "Get discovered by employers"]} cta="Enter Learner Path" href="/learners" variant="learner" />
           <RoleCard title="I'm a Business" items={["Post real business tasks", "Review verified talent", "Filter by skill and trust score", "Hire with confidence"]} cta="Enter Business Path" href="/business" variant="business" />
         </div>
       </SectionContainer>
-    </>
+    </div>
   );
 }
