@@ -1,4 +1,4 @@
-# Skill Launch by Moneyfest
+# PromptAcademy by Moneyfest
 
 **Vertical AI Academy + AI Employability Ecosystem**
 
@@ -205,4 +205,4 @@ Animated backgrounds: `src/components/shared/motion.tsx` (`AnimatedBackground`)
 - One pipeline — every feature serves LEARN → EARN → PROOF → HIRED
 - Proof of work over proof of claims
 
-© 2026 Skill Launch by Moneyfest
+© 2026 PromptAcademy by Moneyfest

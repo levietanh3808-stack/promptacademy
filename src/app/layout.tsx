@@ -2,14 +2,13 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
-import { brand } from "@/lib/constants";
 import "./globals.css";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: `${brand.full} | From AI Anxiety to Verified Employability`,
+  title: "PromptAcademy by Moneyfest | From AI Anxiety to Verified Employability",
   description: "Vertical AI Academy + Employability Ecosystem. Learn domain-specific AI, earn on real SME projects, build verified portfolios, get hired through proof-of-work.",
 };
 

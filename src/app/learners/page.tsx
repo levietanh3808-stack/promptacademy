@@ -11,7 +11,6 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { academies, assessmentLayers, scoreTiers } from "@/data/academies";
-import { brand } from "@/lib/constants";
 import { BookOpen, Target, FlaskConical, ClipboardCheck, Wallet, Shield } from "lucide-react";
 
 export default function LearnersPage() {
@@ -40,7 +39,7 @@ export default function LearnersPage() {
       </SectionContainer>
 
       <SectionContainer className="bg-panel">
-        <SectionHeader title={`How ${brand.name} solves it`} description="Learn → Practice → Earn → Build Proof → Get Referred / Get Hired" />
+        <SectionHeader title="How PromptAcademy solves it" description="Learn → Practice → Earn → Build Proof → Get Referred / Get Hired" />
         <div className="grid gap-6 md:grid-cols-5">
           {["Learn", "Practice", "Earn", "Build Proof", "Get Hired"].map((s, i) => (
             <FadeIn key={s} delay={i * 0.05}>

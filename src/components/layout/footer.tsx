@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { GraduationCap } from "lucide-react";
-import { navLinks, brand } from "@/lib/constants";
+import { navLinks } from "@/lib/constants";
 
 export function Footer() {
   return (
@@ -13,8 +13,8 @@ export function Footer() {
                 <GraduationCap className="h-4 w-4" />
               </span>
               <div>
-                <p className="font-bold text-foreground">{brand.nameStyled}</p>
-                <p className="text-[10px] uppercase tracking-widest text-muted">{brand.byline}</p>
+                <p className="font-bold text-foreground">PromptAcademy</p>
+                <p className="text-[10px] uppercase tracking-widest text-muted">by Moneyfest</p>
               </div>
             </div>
             <p className="mt-4 text-sm text-muted">
@@ -49,7 +49,7 @@ export function Footer() {
           </div>
         </div>
         <div className="mt-12 border-t border-border pt-8 text-center text-xs text-muted">
-          © 2026 {brand.full} · Learn AI. Do real work. Get hired.
+          © 2026 PromptAcademy by Moneyfest · Learn AI. Do real work. Get hired.
         </div>
       </div>
     </footer>

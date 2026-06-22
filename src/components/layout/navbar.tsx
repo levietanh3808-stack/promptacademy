@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { Menu, X, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { navLinks, brand } from "@/lib/constants";
+import { navLinks } from "@/lib/constants";
 
 export function Navbar() {
   const pathname = usePathname();
@@ -38,10 +38,10 @@ export function Navbar() {
           </span>
           <div className="leading-tight">
             <span className="block text-sm font-bold tracking-tight text-foreground">
-              Skill <span className="font-normal text-muted">—</span> Launch
+              PromptAcademy
             </span>
             <span className="block text-[10px] font-medium uppercase tracking-widest text-muted">
-              {brand.byline}
+              by Moneyfest
             </span>
           </div>
         </Link>
