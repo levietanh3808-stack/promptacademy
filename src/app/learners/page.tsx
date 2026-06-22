@@ -39,7 +39,7 @@ export default function LearnersPage() {
       </SectionContainer>
 
       <SectionContainer className="bg-panel">
-        <SectionHeader title="How PromptAcademy solves it" description="Learn → Practice → Earn → Build Proof → Get Referred / Get Hired" />
+        <SectionHeader title="How Skill Launch solves it" description="Learn → Practice → Earn → Build Proof → Get Referred / Get Hired" />
         <div className="grid gap-6 md:grid-cols-5">
           {["Learn", "Practice", "Earn", "Build Proof", "Get Hired"].map((s, i) => (
             <FadeIn key={s} delay={i * 0.05}>

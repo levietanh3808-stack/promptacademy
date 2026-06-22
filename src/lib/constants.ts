@@ -1,3 +1,9 @@
+export const brand = {
+  name: "Skill Launch",
+  byline: "by Moneyfest",
+  full: "Skill Launch by Moneyfest",
+} as const;
+
 export const navLinks = [
   { href: "/#how-it-works", label: "How It Works" },
   { href: "/learners", label: "For Learners" },

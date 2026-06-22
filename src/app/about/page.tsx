@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 export default function AboutPage() {
   return (
     <>
-      <PageHero eyebrow="About" title="Workforce infrastructure for the AI era" description="PromptAcademy by Moneyfest — preparing the future workforce through verified, domain-specific AI execution." compact />
+      <PageHero eyebrow="About" title="Workforce infrastructure for the AI era" description="Skill Launch by Moneyfest — preparing the future workforce through verified, domain-specific AI execution." compact />
       <SectionContainer>
         <div className="mx-auto max-w-3xl space-y-6 text-lg leading-relaxed text-muted">
           <p>We exist because learners earn certificates without execution capability, while businesses desperately need AI-ready talent they can trust.</p>

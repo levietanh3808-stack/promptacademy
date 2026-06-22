@@ -58,7 +58,7 @@ export default function BusinessPage() {
       <PageHero
         eyebrow="For Businesses"
         title="Hire verified AI-ready talent. Post tasks. Test execution. Reduce risk."
-        description="PromptAcademy helps businesses source practical AI execution through real tasks, mentor-reviewed outputs, verified portfolios, and confidence-based hiring."
+        description="Skill Launch helps businesses source practical AI execution through real tasks, mentor-reviewed outputs, verified portfolios, and confidence-based hiring."
       >
         <div className="flex flex-wrap gap-3">
           <Button asChild>
@@ -156,7 +156,7 @@ export default function BusinessPage() {
             ],
           }}
           right={{
-            title: "PromptAcademy proof pipeline",
+            title: "Skill Launch proof pipeline",
             items: [
               "Verified task history",
               "Mentor-reviewed outputs",

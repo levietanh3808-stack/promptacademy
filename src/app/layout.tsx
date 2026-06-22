@@ -8,7 +8,7 @@ const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
 const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "PromptAcademy by Moneyfest | From AI Anxiety to Verified Employability",
+  title: "Skill Launch by Moneyfest | From AI Anxiety to Verified Employability",
   description: "Vertical AI Academy + Employability Ecosystem. Learn domain-specific AI, earn on real SME projects, build verified portfolios, get hired through proof-of-work.",
 };
 

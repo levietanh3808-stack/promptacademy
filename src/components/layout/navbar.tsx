@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { Menu, X, GraduationCap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { navLinks } from "@/lib/constants";
+import { navLinks, brand } from "@/lib/constants";
 
 export function Navbar() {
   const pathname = usePathname();
@@ -43,7 +43,7 @@ export function Navbar() {
           </span>
           <div className="leading-tight">
             <span className={cn("block text-sm font-bold tracking-tight", glassHero ? "text-white" : "text-foreground")}>
-              PromptAcademy
+              {brand.name}
             </span>
             <span className={cn("block text-[10px] font-medium uppercase tracking-widest", glassHero ? "text-white/60" : "text-muted")}>
               by Moneyfest

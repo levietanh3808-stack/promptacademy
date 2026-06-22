@@ -1,4 +1,4 @@
-# PromptAcademy by Moneyfest
+# Skill Launch by Moneyfest
 
 **Vertical AI Academy + AI Employability Ecosystem**
 
@@ -47,7 +47,7 @@ Trong terminal, chạy (thay `USERNAME` nếu khác):
 cd "/Users/leevietanh/AS/ghbc/web mới/promptacademy"
 
 git add .
-git commit -m "PromptAcademy: deploy to GitHub Pages"
+git commit -m "Skill Launch: deploy to GitHub Pages"
 
 git remote add origin https://github.com/USERNAME/promptacademy.git
 git branch -M main
@@ -205,4 +205,4 @@ Animated backgrounds: `src/components/shared/motion.tsx` (`AnimatedBackground`)
 - One pipeline — every feature serves LEARN → EARN → PROOF → HIRED
 - Proof of work over proof of claims
 
-© 2026 PromptAcademy by Moneyfest
+© 2026 Skill Launch by Moneyfest
