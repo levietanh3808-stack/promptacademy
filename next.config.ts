@@ -1,7 +1,16 @@
 import type { NextConfig } from "next";
 
+/** Set in GitHub Actions: /repo-name for project Pages, empty for user site or local dev */
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
 const nextConfig: NextConfig = {
-  /* config options here */
+  output: "export",
+  basePath,
+  assetPrefix: basePath ? `${basePath}/` : undefined,
+  trailingSlash: true,
+  images: {
+    unoptimized: true,
+  },
 };
 
 export default nextConfig;
