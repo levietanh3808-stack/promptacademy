@@ -24,9 +24,11 @@ export function WorkflowConnector({
             }}
             className={cn(
               "relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border text-xs font-bold transition-colors sm:h-12 sm:w-12",
-              i <= activeIndex
-                ? "border-primary/50 bg-primary/20 text-blue-200"
-                : "border-border bg-panel text-muted"
+              i === activeIndex
+                ? "border-primary bg-primary text-white shadow-sm shadow-primary/20"
+                : i < activeIndex
+                  ? "border-primary/40 bg-primary/10 text-primary-deep"
+                  : "border-border bg-panel text-muted"
             )}
           >
             {String(i + 1).padStart(2, "0")}
